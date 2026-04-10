@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  # Django应用服务（连接到本地MySQL）
+  web:
+    build: .
+    container_name: supermarket_web
+    restart: always
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8001"
+    volumes:
+      - .:/app
+    ports:
+      - "8001:8001"
+    environment:
+      - DB_HOST=host.docker.internal
+      - DB_PORT=3306
+      - DB_NAME=demo_django_supermarket
+      - DB_USER=admin
+      - DB_PASSWORD=123456
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
