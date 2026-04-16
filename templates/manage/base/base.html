@@ -230,7 +230,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" onclick="if(confirm('确定退出吗？')){href='{% url 'logout' %}'}">
+                        <a href="#" class="nav-link" id="logout-btn" data-logout-url="{% url 'logout' %}">
                             <i class="icon icon-power"></i> 退出登录
                         </a>
                     </li>
@@ -257,14 +257,24 @@
 
 
 
-<script src="../../../static/manage/demo/vendor/jquery/jquery.min.js"></script>
-<script src="../../../static/manage/demo/vendor/popper.js/popper.min.js"></script>
-<script src="../../../static/manage/demo/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../../static/manage/demo/vendor/chart.js/chart.min.js"></script>
-<script src="../../../static/manage/demo/js/carbon.js"></script>
-<script src="../../../static/manage/demo/js/demo.js"></script>
-        <script src="../../../static/manage/js/b_demo.js"></script>
-        <script src="../../../static/manage/js/time.js"></script>
+<script src="{% static 'manage/demo/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'manage/demo/vendor/popper.js/popper.min.js' %}"></script>
+<script src="{% static 'manage/demo/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'manage/demo/vendor/chart.js/chart.min.js' %}"></script>
+<script src="{% static 'manage/demo/js/carbon.js' %}"></script>
+<script src="{% static 'manage/demo/js/demo.js' %}"></script>
+        <script src="{% static 'manage/js/b_demo.js' %}"></script>
+        <script src="{% static 'manage/js/time.js' %}"></script>
+    <script>
+        $(function() {
+            $('#logout-btn').on('click', function(e) {
+                e.preventDefault();
+                if (confirm('确定退出吗？')) {
+                    location.href = $(this).data('logout-url');
+                }
+            });
+        });
+    </script>
     {% block js %}
     {% endblock %}
 </body>

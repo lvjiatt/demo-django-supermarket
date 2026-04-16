@@ -1,5 +1,6 @@
 {% extends 'manage/base/base.html' %}
 {% load my_tags %}
+{% load static %}
 {% block content %}
 
     <div class="container-fluid" style="font-size: 18px">
@@ -19,7 +20,7 @@
                                 <span>{% if is_edit == 1 %}商品信息修改 {% else %} 进新货{% endif %}</span>
                             </div>
                 <!-- form with image -->
-                <form id="purchase_form" action="{% if is_edit == 1 %}/good_edit/{% else %}/purchase/{% endif %}" method="post" enctype="multipart/form-data">
+                <form id="purchase_form" action="{% if is_edit == 1 %}{% url 'good_edit' %}{% else %}{% url 'purchase' %}{% endif %}" method="post" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="row mb-5">
                                     <div class="col-md-4 mb-4">
@@ -29,7 +30,7 @@
                                             <div class="form-group" style="width: 150px">
                                                 <label class="form-control-label">&nbsp;</label>
                                                 <div class="snipcart-thumb">
-                                                    <img class="show_img" src="../../../static/media/goods_img/{% if is_edit == 1 %}{{ eg.sort }}_{{ eg.id }}.png{% else %}default.jpg{% endif %}" />
+                                                    <img class="show_img" src="{% get_media_prefix %}goods_img/{% if is_edit == 1 %}{{ eg.sort }}_{{ eg.id }}.png{% else %}default.jpg{% endif %}" />
                                                     <input type="file" accept="image/*" id='image_input' class="form-control" name="good_image" onchange="img_upload(this)" style="opacity: 0; display: none;">
                                                     <label for="image_input" class='btn btn-outline-primary' style="margin-top: 15px">选择图片</label>
                                                 </div>
@@ -115,9 +116,9 @@
                                                     <label class="form-control-label">供应商</label>
                                                     <select class="form-control select_check" name="good_provider">
                                                         <option disabled selected style="color: #999999;">---选择供应商---</option>
-                                                        {% for p in p %}
+                                                        {% for provider in p %}
 
-                                                        <option value="{{ p.id }}" {% if eg.provider_id == p.id %}selected="selected"{% endif %}>{{ p.name }}</option>
+                                                        <option value="{{ provider.id }}" {% if eg.provider_id == provider.id %}selected="selected"{% endif %}>{{ provider.name }}</option>
                                                         {% endfor %}
 
                                                         <option value="" id="other_option">---添加新的供应商---</option>
@@ -209,7 +210,7 @@
                             </div>
                             <div class="card-body">
 <div class="s_w_card">
-                <form action="/purchase/" method="post" enctype="multipart/form-data">
+                <form action="{% url 'purchase' %}" method="post" enctype="multipart/form-data">
                                 <div class="row mb-5">
                                     <div class="col-md-4 mb-4">
                                         <div>确认商品信息</div>
@@ -218,7 +219,7 @@
                                             <div class="form-group">
                                                 <label class="form-control-label">&nbsp;</label>
                                                 <div class="snipcart-thumb">
-                                                    <img class="show_img" src="../../../static/media/goods_img/{{ good.sort }}_{{ good.id }}.png" onerror="this.src='../../../static/media/goods_img/default.jpg'" />
+                                                    <img class="show_img" src="{% get_media_prefix %}goods_img/{{ good.sort }}_{{ good.id }}.png" onerror="this.src='{% get_media_prefix %}goods_img/default.jpg'" />
                                                 </div>
                                             </div>
                                         </div>
@@ -360,16 +361,16 @@
 {% endblock %}
 
 {% block js %}
-    <script src="../../../static/manage/js/jquery.form.js"></script>
+    <script src="{% static 'manage/js/jquery.form.js' %}"></script>
     <script>
         $('#new_in').on('click', function () {
             $(this).attr('class', 'list-group-item active');
             $('#supplement').attr('class', 'list-group-item');
             $('#withdraw').attr('class', 'list-group-item');
-            {#$('#withdraw_card').css('display', 'none');#}
+            // $('#withdraw_card').css('display', 'none');
             $('#new_in_card').css('display', '');
             $('#supplement_card').css('display', 'none');
-            history.pushState(null, null, '/purchase')
+            history.pushState(null, null, '/purchase');
 
         });
 
@@ -383,20 +384,20 @@
             $('#withdraw_save').hide();
             $('#supplement_save').show();
             $('.provider_info').show();
-            {#history.pushState(null, null, '/purchase?id=')#}
+            // history.pushState(null, null, '/purchase?id=');
         });
         $('#withdraw').on('click', function () {
             $(this).attr('class', 'list-group-item active');
             $('#supplement').attr('class', 'list-group-item');
             $('#new_in').attr('class', 'list-group-item');
             $('#new_in_card').css('display', 'none');
-            {#$('#withdraw_card').css('display', '');#}
+            // $('#withdraw_card').css('display', '');
             $('#supplement_card').css('display', '');
 
             $('#withdraw_save').show();
             $('#supplement_save').hide();
             $('.provider_info').hide();
-            {#history.pushState(null, null, '/purchase?id=')#}
+            // history.pushState(null, null, '/purchase?id=');
         });
 
         function save_purchase() {
@@ -405,7 +406,7 @@
                             alert(data);
                         },
                         error: function (data) {
-                            {#console.log("inside else");#}
+                            // console.log("inside else");
                             alert('数据异常，请检查输入的内容');
                         }
                     });
@@ -442,20 +443,20 @@
             if(location.href.indexOf("?") != -1){
                 url = location.href.split("?")[1];
                 the_id = location.href.split("=")[1];
-                {#console.log(the_id);#}
+                // console.log(the_id);
                 return the_id;
             }
             else {
-                return null
+                return null;
             }
         }
-        {#console.log(getUrlId());#}
+        // console.log(getUrlId());
         $('.id_selector').val(getUrlId());
         function id_select () {
-            {#console.log($(this).val());#}
+            // console.log($(this).val());
             if(location.href.indexOf("?") != -1){
                 url = location.href.split("?")[0];
-                {#console.log(url);#}
+                // console.log(url);
                 if ($('.id_selector').val() != null) {
                     history.pushState(null, null, url+ '?id='+$('.id_selector').val());// 修改浏览器的url，使得刷新不会跳回取  //莫名失效
                     if ($('#withdraw').attr('class') ===  'list-group-item active'){
@@ -474,7 +475,7 @@
 
         //确认进货supplement，跳到记录查询。
         function s_get_ajax() {
-            {#alert("s_get_ajax");#}
+            // alert("s_get_ajax");
             good_num = $('.provider_info').find('input[name="good_num"]').val();
             good_piece = $('.provider_info').find('input[name="good_piece"]').val();
             good_location = $('.provider_info').find('select[name="good_location"]').val();
@@ -482,7 +483,7 @@
             if (good_num == null || good_piece == null || good_location == null || good_id == null ) {
                 $('.input_check').blur();
                 $('.select_check').blur();
-                alert("请检查输入内容！")
+                alert("请检查输入内容！");
             }
             else {
                 var data = {
@@ -495,13 +496,13 @@
                     alert(text);
                     if(text==="ok"){
                         console.log("okok");
-                        {#window.location.href="/account_all";#}
+                        // window.location.href="/account_all";
                         //定到记录页面
                     }
                     else{
                         console.log("nono");
                     }
-        });
+                });
             }
         }
 
@@ -512,7 +513,7 @@
                     alert(text);
                     if(text==="ok"){
                         console.log("okok");
-                        {#window.location.href="/account_all";#}
+                        // window.location.href="/account_all";
                         //定到记录页面
                     }
                     else{
@@ -532,14 +533,19 @@
                             history.back(-1);location.reload();
                         },
                         error: function (data) {
-                            {#console.log("inside else");#}
+                            // console.log("inside else");
                             alert('数据异常，请检查输入的内容');
                         }
                     });
                 }
         }
-        {% if is_supplement == 1 %}
-        $('#supplement').click();
-        {% endif %}
+    </script>
+    <input type="hidden" id="is_supplement" value="{{ is_supplement|default:0 }}">
+    <script>
+        $(function() {
+            if ($('#is_supplement').val() === '1') {
+                $('#supplement').click();
+            }
+        });
     </script>
 {% endblock %}
