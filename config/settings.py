@@ -83,7 +83,7 @@ DATABASES = {
         'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
         'PORT': os.environ.get('DB_PORT', '3306'),
         'NAME': os.environ.get('DB_NAME', 'demo_django_supermarket'),
-        'USER': os.environ.get('DB_USER', 'admin'),
+        'USER': os.environ.get('DB_USER', 'root'),
         'PASSWORD': os.environ.get('DB_PASSWORD', '123456'),
         'OPTIONS': {
             'charset': 'utf8mb4'
