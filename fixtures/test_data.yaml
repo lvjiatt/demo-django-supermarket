@@ -1,0 +1,197 @@
+# 供应商数据
+- model: app.provider
+  pk: 1
+  fields:
+    name: 可口可乐公司
+    address: 广州市天河区
+    phone: 13800138000
+    isDelete: false
+
+- model: app.provider
+  pk: 2
+  fields:
+    name: 宝洁集团
+    address: 深圳市南山区
+    phone: 13900139000
+    isDelete: false
+
+- model: app.provider
+  pk: 3
+  fields:
+    name: 三只松鼠
+    address: 芜湖市弋江区
+    phone: 13700137000
+    isDelete: false
+
+# 商品数据
+- model: app.goods
+  pk: 1
+  fields:
+    name: 可口可乐330ml
+    sale_price: 3.5
+    cost_price: 2.0
+    weight: 0.33
+    sort: 0
+    produce_date: 2024-01-01
+    limit_date: 2025-01-01
+    lower: 0
+    provider: 1
+    isDelete: false
+
+- model: app.goods
+  pk: 2
+  fields:
+    name: 雪碧330ml
+    sale_price: 3.5
+    cost_price: 2.0
+    weight: 0.33
+    sort: 0
+    produce_date: 2024-01-01
+    limit_date: 2025-01-01
+    lower: 0
+    provider: 1
+    isDelete: false
+
+- model: app.goods
+  pk: 3
+  fields:
+    name: 海飞丝洗发水
+    sale_price: 35.0
+    cost_price: 20.0
+    weight: 0.5
+    sort: 3
+    produce_date: 2024-01-01
+    limit_date: 2026-01-01
+    lower: 5.0
+    provider: 2
+    isDelete: false
+
+- model: app.goods
+  pk: 4
+  fields:
+    name: 坚果大礼包
+    sale_price: 88.0
+    cost_price: 50.0
+    weight: 1.0
+    sort: 0
+    produce_date: 2024-01-01
+    limit_date: 2024-12-01
+    lower: 10.0
+    provider: 3
+    isDelete: false
+
+- model: app.goods
+  pk: 5
+  fields:
+    name: 苹果
+    sale_price: 8.0
+    cost_price: 4.0
+    weight: 1.0
+    sort: 1
+    produce_date: 2024-04-01
+    limit_date: 2024-05-01
+    lower: 0
+    provider: 1
+    isDelete: false
+
+# 进货记录（库存数据）
+- model: app.record
+  pk: 1
+  fields:
+    location: 1
+    date: 2024-04-01
+    purchase_num: 100
+    sale_num: null
+    withdraw_num: null
+    goods: 1
+
+- model: app.record
+  pk: 2
+  fields:
+    location: 1
+    date: 2024-04-01
+    purchase_num: 100
+    sale_num: null
+    withdraw_num: null
+    goods: 2
+
+- model: app.record
+  pk: 3
+  fields:
+    location: 1
+    date: 2024-04-01
+    purchase_num: 50
+    sale_num: null
+    withdraw_num: null
+    goods: 3
+
+- model: app.record
+  pk: 4
+  fields:
+    location: 1
+    date: 2024-04-01
+    purchase_num: 30
+    sale_num: null
+    withdraw_num: null
+    goods: 4
+
+- model: app.record
+  pk: 5
+  fields:
+    location: 1
+    date: 2024-04-01
+    purchase_num: 200
+    sale_num: null
+    withdraw_num: null
+    goods: 5
+
+# 东区库存
+- model: app.record
+  pk: 6
+  fields:
+    location: 4
+    date: 2024-04-01
+    purchase_num: 80
+    sale_num: null
+    withdraw_num: null
+    goods: 1
+
+- model: app.record
+  pk: 7
+  fields:
+    location: 4
+    date: 2024-04-01
+    purchase_num: 80
+    sale_num: null
+    withdraw_num: null
+    goods: 2
+
+- model: app.record
+  pk: 8
+  fields:
+    location: 4
+    date: 2024-04-01
+    purchase_num: 40
+    sale_num: null
+    withdraw_num: null
+    goods: 3
+
+- model: app.record
+  pk: 9
+  fields:
+    location: 4
+    date: 2024-04-01
+    purchase_num: 20
+    sale_num: null
+    withdraw_num: null
+    goods: 4
+
+- model: app.record
+  pk: 10
+  fields:
+    location: 4
+    date: 2024-04-01
+    purchase_num: 150
+    sale_num: null
+    withdraw_num: null
+    goods: 5

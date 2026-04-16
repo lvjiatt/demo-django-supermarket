@@ -10,32 +10,34 @@
     <link rel="stylesheet" href="../../static/manage/demo/vendor/font-awesome/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="../../static/manage/demo/css/styles.css">
 <style type="text/css">
-{#html{#}
-{#    height: 100%;#}
-{#    width: 100%;}#}
+/* html{
+    height: 100%;
+    width: 100%;
+} */
 .bg{
     background-color: black;
-    {#width:100%;#}
-    {#height:100%;#}
-    {#position: relative;#}
-    {#background: url("../../static/manage/login_bg.jpg");#}
-    {#background-size: cover;#}
-    {#z-index:1;#}
+    /* width:100%; */
+    /* height:100%; */
+    /* position: relative; */
+    /* background: url("../../static/manage/login_bg.jpg"); */
+    /* background-size: cover; */
+    /* z-index:1; */
 }
-{#.bg:after{#}
-{#    content: "";#}
-{#    width:100%;#}
-{#    height:100%;#}
-{#    position: absolute;#}
-{#    left:0;#}
-{#    top:0;#}
-{#    background: inherit;#}
-{#    filter: blur(15px);#}
-{#    z-index: 2;}#}
+/* .bg:after{
+    content: "";
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    background: inherit;
+    filter: blur(15px);
+    z-index: 2;
+} */
 .drag{
-    {#box-shadow: 0 0 30px black;#}
-    {#border-radius: 15px;#}
-    {#z-index:11;#}
+    /* box-shadow: 0 0 30px black; */
+    /* border-radius: 15px; */
+    /* z-index:11; */
 }
     </style>
 </head>
@@ -91,7 +93,7 @@ $(function () {
     $('.drag').fadeIn();
     $(".login_form").ajaxForm(function(data){
 		if(data==="ok"){
-			window.location.href='/view_all'
+			window.location.href='/view_all/'
 		}
 		else {
 		    alert("登录失败！");

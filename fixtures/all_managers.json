@@ -1,0 +1,41 @@
+[
+{
+  "model": "app.manager",
+  "pk": 1,
+  "fields": {
+    "account": "admin",
+    "pwd": "123456",
+    "name": "admin",
+    "gender": 0,
+    "phone": "15512345678",
+    "authority": 0,
+    "isDelete": false
+  }
+},
+{
+  "model": "app.manager",
+  "pk": 2,
+  "fields": {
+    "account": "buyer01",
+    "pwd": "123456",
+    "name": "\u5f20\u4e09",
+    "gender": 1,
+    "phone": "15511112222",
+    "authority": 2,
+    "isDelete": false
+  }
+},
+{
+  "model": "app.manager",
+  "pk": 3,
+  "fields": {
+    "account": "seller01",
+    "pwd": "123456",
+    "name": "\u674e\u56db",
+    "gender": 0,
+    "phone": "15533334444",
+    "authority": 3,
+    "isDelete": false
+  }
+}
+]

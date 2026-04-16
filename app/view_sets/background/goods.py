@@ -82,7 +82,7 @@ def good_edit(request, c, n_f, n_n):
     elif request.method == 'POST':
         from django.conf import settings
         import datetime
-        produce_date = datetime.datetime.strptime(str(request.POST['good_produce_date']), '%Y-%m-%d').date(),
+        produc_date = datetime.datetime.strptime(str(request.POST['good_produce_date']), '%Y-%m-%d').date(),
         limit_date = datetime.datetime.strptime(str(request.POST['good_limit_date']), '%Y-%m-%d').date(),
         if limit_date > produce_date:
             Goods.objects.filter(id=request.POST['id']).update(

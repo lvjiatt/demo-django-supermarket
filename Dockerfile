@@ -1,31 +1,59 @@
-# 1. 基础镜像（使用Python 3.7，项目要求的版本）
-FROM python:3.7-slim
+# ==========================================
+# Django超市管理系统 - Dockerfile (Windows版)
+# 最合适的Windows基础镜像: python:3.9-windowsservercore-ltsc2022
+# ==========================================
 
-# 2. 设置环境变量
+# ==========================================
+# 1. 基础镜像选择 - Windows平台最佳选择
+# ==========================================
+# ✅ 最终选择: python:3.9-windowsservercore-ltsc2022
+#
+# 为什么这是Windows最合适的镜像:
+#   • Python 3.9 完美匹配 Django 2.2.2 (不支持3.10+)
+#   • Windows Server 2022 LTSC 长期支持版，稳定可靠
+#   • 预装完整VC++ 2015-2022运行库
+#   • mysqlclient可直接安装预编译wheel包，无需编译
+#
+# ❌ 避坑提醒: 不要用nanoserver，缺少运行库无法启动mysqlclient
+FROM python:3.9-windowsservercore-ltsc2022
+
+# ==========================================
+# 2. 环境变量优化
+# ==========================================
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1
 
-# 3. 安装系统依赖（MySQL客户端开发库）
-RUN apt-get update && apt-get install -y \
-    default-libmysqlclient-dev \
-    gcc \
-    pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+# ==========================================
+# 3. Windows系统依赖说明
+# ==========================================
+# ✅ Windows下无需额外安装编译依赖!
+# LTSC2022镜像已包含完整VC++运行库
+# mysqlclient 2.1.0提供官方Windows预编译包
 
-# 4. 设置工作目录
-WORKDIR /app
+# ==========================================
+# 4. 工作目录 (按要求不可修改)
+# ==========================================
+WORKDIR C:\\app
 
-# 5. 复制依赖文件并安装Python依赖
-COPY requirements /app/requirements
-RUN pip install --upgrade pip && \
+# ==========================================
+# 5. Python依赖安装
+# ==========================================
+COPY requirements C:\\app\\requirements
+RUN pip install --upgrade pip setuptools wheel && \
     pip install -r requirements
 
-# 6. 复制项目文件到容器
-COPY . /app/
+# ==========================================
+# 6. 复制项目代码 (COPY不用动)
+# ==========================================
+COPY xxx/ ./
 
+# ==========================================
 # 7. 暴露端口
-EXPOSE 8001
+# ==========================================
+EXPOSE 8000
 
-# 8. 启动命令（可选）默认启动开发服务器
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
+# ==========================================
+# 8. 启动命令
+# ==========================================
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

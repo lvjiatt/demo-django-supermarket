@@ -19,7 +19,7 @@ def check_login(group):
             if request.session.get('is_login') == '1':
                 id = request.session.get('account_id')
                 current_account = Manager.objects.filter(id=id)[0]
-                if current_account.authority not in group:
+                if current_account.authority not in group or current_account.authority == 0:
                     return render(request, '404.html')
                 new_feedback = Message.objects.filter(type=1, isRead=0).count()
                 new_notifications = Message.objects.filter(type=0, isRead=0).count()
