@@ -47,7 +47,7 @@ def sale_record(request, c, n_f, n_n):
             goods_id = concat[i]
         if j == 3:
             sale_num = concat[i]
-            Record.objects.create(goods_id=goods_id, location=loc, purchase_num=sale_num)
+            Record.objects.create(goods_id=goods_id, location=loc, sale_num=sale_num)
             j = 0
         j += 1
     return HttpResponse('ok')

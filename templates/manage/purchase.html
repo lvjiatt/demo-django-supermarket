@@ -492,7 +492,7 @@
                     location: parseInt(good_location),
                 };
                 console.log(data);
-                $.post('/purchase_supplement/', data, function (text, status) {
+                $.post('{% url "purchase_supplement" %}', data, function (text, status) {
                     alert(text);
                     if(text==="ok"){
                         console.log("okok");
@@ -509,7 +509,7 @@
         //确认退货withdraw
         function w_get_ajax() {
             if(confirm("确定下架并退货吗？")){
-                $.post('/good_remove/', {id: parseInt($('.id_selector').val())}, function (text, status) {
+                $.post('{% url "good_remove" %}', {id: parseInt($('.id_selector').val())}, function (text, status) {
                     alert(text);
                     if(text==="ok"){
                         console.log("okok");
