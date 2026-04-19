@@ -341,7 +341,7 @@ $('.sale_btn').click(function () {
 $('.blur_bg button').click(function () {
     console.log($(this).val());
     if($(this).val() === '1' || $(this).val() === '2' || $(this).val() === '4' ){
-        window.location.href='/sale?loc='+$(this).val();
+        window.location.href='/sale/?loc='+$(this).val();
     }
     else {
         $('.blur_bg').fadeOut();
