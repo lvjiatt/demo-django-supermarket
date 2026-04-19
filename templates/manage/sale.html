@@ -82,13 +82,15 @@ $('#key_add').click(function(){
     $.ajax({
         url:"/sale/",
         type:"post",
-        dataType: "json",
         data: { key: $('#key_input').val(),
                 loc: $('.loc').attr('id'),
         },
         success: function(data){
             // console.log(data);
-            if (data.length === 0){
+            if (data === '无货'){
+                alert('该商品在此超市暂时无货');
+            }
+            else if (data.length === 0){
                 alert('查询结果为空');
             }
             else {
