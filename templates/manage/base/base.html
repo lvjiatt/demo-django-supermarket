@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}超市管理系统{% endblock %}</title>
     {% load staticfiles %}
-    <link rel='stylesheet' href='../../../static/manage/demo/vendor/simple-line-icons/css/simple-line-icons.css'>
-    <link rel='stylesheet' href='../../../static/manage/demo/vendor/font-awesome/css/fontawesome-all.min.css'>
-    <link rel='stylesheet' href='../../../static/manage/demo/css/styles.css'>
+    <link rel='stylesheet' href="{% static 'manage/demo/vendor/simple-line-icons/css/simple-line-icons.css' %}">
+    <link rel='stylesheet' href="{% static 'manage/demo/vendor/font-awesome/css/fontawesome-all.min.css' %}">
+    <link rel='stylesheet' href="{% static 'manage/demo/css/styles.css' %}">
     {% block css %}
-        <link rel='stylesheet' href='../../../static/manage/css/styles.css'>
+        <link rel='stylesheet' href="{% static 'manage/css/styles.css' %}">
     {% endblock %}
 </head>
 <body class="sidebar-fixed header-fixed">
@@ -64,7 +64,7 @@
 
 
                     <a class="nav-link" href="{% url 'profile' %}">
-                        <img src="../../../static/manage/demo/imgs/user.png" class="avatar avatar-sm" alt="logo">
+                        <img src="{% static 'manage/demo/imgs/user.png' %}" class="avatar avatar-sm" alt="logo">
                         <span class="small ml-1 d-md-down-none" style="color: #fff">{{ c.name }}</span>
                     </a>
 
