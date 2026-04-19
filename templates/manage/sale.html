@@ -1,5 +1,6 @@
 {% extends 'manage/base/base.html' %}
 {% load my_tags %}
+{% load static %}
 {% block content %}
 
     <div class="row mt-1">
@@ -44,7 +45,7 @@
     </div>
     </div>
     <div class="make_change">
-        <img src="../../static/home/images/close_1.png" onclick="close_change()">
+        <img src="{% static 'home/images/close_1.png' %}" onclick="close_change()">
         <div>
             <lable>应收：</lable><span id="price_all_again">0</span>
         </div>
@@ -79,7 +80,7 @@ $('#key_add').click(function(){
     if($('#key_input').val() != ''){
 
     $.ajax({
-        url:"/sale/",
+        url:"{% url 'sale' %}",
         type:"post",
         dataType: "json",
         data: { key: $('#key_input').val(),
@@ -180,7 +181,7 @@ function add_record() {
     console.log(arr);
     if (arr.length > 0){
         // 异步，同时执行
-        $.post('/sale_record/', {data: arr}, function (text, status) {
+        $.post('{% url "sale_record" %}', {data: arr}, function (text, status) {
           alert(text);
             if(text==="ok"){
                 console.log(text);

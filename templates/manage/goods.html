@@ -1,5 +1,6 @@
 {% extends 'manage/base/base.html' %}
 {% load my_tags %}
+{% load static %}
 {% block content %}
 
     <div class="row mt-4">
@@ -11,14 +12,14 @@
                             {% else %}
                                 商品信息({{ len }})
                             
-                <a class="btn btn-success" onclick="window.location.href='/goods?loc=1'">一饭</a>
-                <a class="btn btn-warning" onclick="window.location.href='/goods?loc=2'">三饭</a>
-                <a class="btn btn-primary" onclick="window.location.href='/goods?loc=4'">东区</a>
-                <a class="btn btn-outline-secondary" onclick="window.location.href='/goods'">
+                <a class="btn btn-success" onclick="window.location.href='{% url 'goods_manage' %}?loc=1'">一饭</a>
+                <a class="btn btn-warning" onclick="window.location.href='{% url 'goods_manage' %}?loc=2'">三饭</a>
+                <a class="btn btn-primary" onclick="window.location.href='{% url 'goods_manage' %}?loc=4'">东区</a>
+                <a class="btn btn-outline-secondary" onclick="window.location.href='{% url 'goods_manage' %}'">
 					全部
 				</a>
          <div class="w3l_search float-right">
-    			<form action="/goods/" method="get">
+    			<form action="{% url 'goods_manage' %}" method="get">
     				<input type="search" name="Search" style="Float:left;height:35px;font-size: 16px" placeholder="搜索商品/ID" required="">
     				<button type="submit" class="btn btn-primary" style="Float:left;height:35px" aria-label="Left Align">
     					<i class="fa fa-search" aria-hidden="true"> </i>
@@ -155,7 +156,7 @@
             lower: $(this).siblings('input').val(),
         };
         console.log(data);
-        $.post('/good_lower/', data, function (text, status) {
+        $.post('{% url "good_lower" %}', data, function (text, status) {
             alert(text);
             if(text==="ok"){
                 console.log("okok");
