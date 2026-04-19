@@ -1,4 +1,5 @@
 {% extends "home/index.html" %}
+{% load staticfiles %}
 {% load my_tags %}
 {% block title %}
 -
@@ -99,14 +100,14 @@
 							<div class="agile_top_brand_left_grid">
                                 <!-- 热卖页面等，需要用到右上角标签图片 -->
 								<div class="agile_top_brand_left_grid_pos">
-									<img src="../../../static/home/images/{{ good|get_right_top }}.png" alt=" " class="img-responsive">
+									<img src="{% static 'home/images/' %}{{ good|get_right_top }}.png" alt=" " class="img-responsive">
 								</div>
 								<div class="agile_top_brand_left_grid1">
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
 												<a href="/detail?id={{ good.id }}">
-                                                    <img class="show_img" src="../../../static/media/goods_img/{{ good.sort }}_{{ good.id }}.png" onerror="this.src='../../../static/media/goods_img/default.jpg'">
+                                                    <img class="show_img" src="{% static 'media/goods_img/' %}{{ good.sort }}_{{ good.id }}.png" onerror="this.src='{% static 'media/goods_img/default.jpg' %}'">
                                                 </a>
                                                         <p>{{ good.name }}</p>
                                                     <h4>￥ {{ good.sale_price }}</h4>

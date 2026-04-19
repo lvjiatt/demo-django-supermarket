@@ -19,7 +19,8 @@ def check_login(group):
             if request.session.get('is_login') == '1':
                 id = request.session.get('account_id')
                 current_account = Manager.objects.filter(id=id)[0]
-                if current_account.authority not in group or current_account.authority == 0:
+                # 超级管理员(0)拥有所有权限，其他角色需要检查是否在允许列表中
+                if current_account.authority != 0 and current_account.authority not in group:
                     return render(request, '404.html')
                 new_feedback = Message.objects.filter(type=1, isRead=0).count()
                 new_notifications = Message.objects.filter(type=0, isRead=0).count()
