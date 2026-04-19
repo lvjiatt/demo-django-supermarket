@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>登录</title>
     {% load staticfiles %}
-    <link rel="stylesheet" href="../../static/manage/demo/vendor/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="../../static/manage/demo/vendor/font-awesome/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../../static/manage/demo/css/styles.css">
+    <link rel="stylesheet" href="{% static 'manage/demo/vendor/simple-line-icons/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'manage/demo/vendor/font-awesome/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'manage/demo/css/styles.css' %}">
 <style type="text/css">
 /* html{
     height: 100%;
@@ -19,7 +19,7 @@
     /* width:100%; */
     /* height:100%; */
     /* position: relative; */
-    /* background: url("../../static/manage/login_bg.jpg"); */
+    /* background: url("{% static 'manage/login_bg.jpg' %}"); */
     /* background-size: cover; */
     /* z-index:1; */
 }
@@ -81,19 +81,19 @@
         </div>
     </div>
 </div></div>
-<script src="../../../static/manage/demo/vendor/jquery/jquery.min.js"></script>
-    <script src="../../../static/manage/js/jquery.form.js"></script>
-{#<script src="../static/demo/vendor/popper.js/popper.min.js"></script>#}
-{#<script src="../static/demo/vendor/bootstrap/js/bootstrap.min.js"></script>#}
-{#<script src="../static/demo/vendor/chart.js/chart.min.js"></script>#}
-{#<script src="../static/demo/js/carbon.js"></script>#}
-{#<script src="../static/demo/js/demo.js"></script>#}
+<script src="{% static 'manage/demo/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'manage/js/jquery.form.js' %}"></script>
+{#<script src="{% static 'manage/demo/vendor/popper.js/popper.min.js' %}"></script>#}
+{#<script src="{% static 'manage/demo/vendor/bootstrap/js/bootstrap.min.js' %}"></script>#}
+{#<script src="{% static 'manage/demo/vendor/chart.js/chart.min.js' %}"></script>#}
+{#<script src="{% static 'manage/demo/js/carbon.js' %}"></script>#}
+{#<script src="{% static 'manage/demo/js/demo.js' %}"></script>#}
 <script>
 $(function () {
     $('.drag').fadeIn();
     $(".login_form").ajaxForm(function(data){
 		if(data==="ok"){
-			window.location.href='/view_all/'
+			window.location.href="{% url 'view_all' %}"
 		}
 		else {
 		    alert("登录失败！");

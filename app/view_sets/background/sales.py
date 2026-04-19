@@ -12,6 +12,7 @@ from ...models import Record, Goods
 def sale(request, c, n_f, n_n):
     if request.method == "POST":
         from django.core import serializers
+        import json
         key = request.POST.get('key')
 
         # 先做判断，如果有库存则返回一个good对象
@@ -24,8 +25,8 @@ def sale(request, c, n_f, n_n):
         else:
             result = Goods.objects.filter(id=key, isDelete=0)
             data = serializers.serialize('json', result)
-            final = data[:-1] + ', {"storage": ' + str(storage) + '}]'  # 添加额外字段，构造js可识别的json，格式
-            return HttpResponse(final)
+            final = data[:-1] + ', {"storage": ' + str(storage) + '}]'
+            return HttpResponse(final, content_type='text/plain')
     elif request.GET.get('loc'):
         loc = int(request.GET['loc'])
         return render(request, 'manage/sale.html', locals())
@@ -47,7 +48,7 @@ def sale_record(request, c, n_f, n_n):
             goods_id = concat[i]
         if j == 3:
             sale_num = concat[i]
-            Record.objects.create(goods_id=goods_id, location=loc, purchase_num=sale_num)
+            Record.objects.create(goods_id=goods_id, location=loc, sale_num=sale_num)
             j = 0
         j += 1
     return HttpResponse('ok')
